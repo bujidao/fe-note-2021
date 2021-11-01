@@ -3,7 +3,7 @@
 
 比较各种遍历的特点属性
 
-参与遍历的方法：filter、map、some、every、forEach、reduce
+?> **Tips**  参与遍历的方法：`filter`、`map`、`some`、`every`、`forEach`、`reduce`
 
 ---
 
@@ -124,12 +124,15 @@ console.log(res2) // false (部分元素不大于3)
   * 什么也不返回
     * forEach
 
+
+
 ## 易忘点
 
 ### slice
 
+!> **译：**切成片、部分
+
 * 不修改原数组
-* 切片
 * 返回切片数组
 * `slice[start, end)`
 
@@ -196,4 +199,31 @@ console.log(res) // 1,2,3,4,5,6
 var arr = [1, 2, 3, 4, 5, 6]
 let res = arr.join('---')
 console.log(res) // 1---2---3---4---5---6
+```
+
+## 其他
+
+### concat
+
+> 不修改原数组
+
+### Array.from()
+
+> 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+
+``` javascript
+/**
+ * 数组去重合并
+ */
+var arr1 = [1, 2 ,3]
+var arr2 = [3, 4, 5]
+var arr3 = [5, 6, 7]
+
+function combine() {
+  var arr = [].concat.apply([], arguments)
+  return Array.from(new Set(arr))
+}
+
+var res2 = combine(arr1, arr2, arr3)
+// res2: [1, 2, 3, 4, 5, 6, 7]
 ```

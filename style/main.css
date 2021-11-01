@@ -1,0 +1,16 @@
+h1 a:hover, h2 a:hover, h3:hover a {
+  text-decoration: none !important;
+}
+h2 {
+  border-bottom: 4px solid var(--theme-color, #42b983);
+}
+h2 span {
+  position: relative;
+  background-color: var(--theme-color, #42b983);
+  padding: 0 20px 0 20px;
+  border-radius: 10px 10px 0 0;
+  color: #fff !important;
+}
+h3 {
+  border-bottom: 2px solid var(--theme-color, #42b983);
+}
