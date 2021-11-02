@@ -73,6 +73,19 @@ var res = arr.reduce(function(acc, cur){
 console.log(res) // 6
 ```
 
+**demo**
+```javascript
+/**
+ * 二维数组转一维数组
+ * sourceArr 待转换数组
+ */
+function twoDimension2oneDimension(sourceArr) {
+  return sourceArr.reduce(function(acc, cur, idx, src){
+    return acc.concat(cur)
+  })
+}
+```
+
 ### some
 
 * 不修改原数组
@@ -141,6 +154,23 @@ let arrCars = ['bmw', 'volvo', 'tesla', 'vw', 'benz']
 var res = arrCars.slice(2, 4)
 console.log(arrCars) // ['bmw', 'volvo', 'tesla', 'vw', 'benz']
 console.log(res) // ['tesla', 'vw']
+```
+
+**demo**
+``` javascript
+/**
+ * 一维数组转二维数组
+ * sourceArr 待转换数组
+ * subArrLen 二维数组长度
+ */
+function oneDimension2twoDimension(sourceArr, subArrLen) {
+  var index = 0
+  var newArr = []
+  while(index < sourceArr.length) {
+    newArr.push(sourceArr.slice(index, index += subArrLen))
+  }
+  return newArr
+}
 ```
 
 ### splice
