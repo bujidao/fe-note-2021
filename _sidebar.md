@@ -4,3 +4,5 @@
   * Javascript
     * [string](/pages/javascript/string)
     * [array](/pages/javascript/array)
+    * [object](/pages/javascript/object)
+    * [function](/pages/javascript/function)
