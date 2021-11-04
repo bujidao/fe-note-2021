@@ -5,6 +5,19 @@
 
 ?> **Tips**  参与遍历的方法：`filter`、`map`、`some`、`every`、`forEach`、`reduce`
 
+**特点**
+
+* 所有的遍历，都不会修改原数组
+* 根据返回值，遍历可分为两大类
+  * 有返回值
+    * filter 返回数组
+    * reduce 返回累计结果
+    * every 返回布尔
+    * some 返回布尔
+    * map 返回回调函数执行以后的结果
+  * 什么也不返回
+    * forEach
+
 ---
 
 ### filter
@@ -21,25 +34,6 @@ let res = arr.filter(function(ele) {
 })
 console.log(res) // [4, 5, 7]
 ```
-
-### forEach
-
-* 不修改原数组
-* 不返回任何值
-* 只循环，相当于for
-* 不能提前终止
-
-> 对数组的每一个方法执行一遍给定的方法，不返回值，也不改变原数组
-
-让每个元素做一些事情，具体做什么，随便
-
-``` javascript
-arrNum.forEach(function(ele){
-  pickupSoup(ele)
-})
-```
-
-> 注意：除了抛出异常以外，没有办法中止或跳出 forEach() 循环。如果你需要中止或跳出循环，forEach() 方法不是应当使用的工具。
 
 ### map
 
@@ -124,20 +118,24 @@ var res2 = arr.every(function(ele) {
 console.log(res2) // false (部分元素不大于3)
 ```
 
-### 总结
+### forEach
 
-* 所有的遍历，都不会修改原数组
-* 根据返回值，遍历可分为两大类
-  * 有返回值
-    * filter 返回数组
-    * reduce 返回累计结果
-    * every 返回布尔
-    * some 返回布尔
-    * map 返回回调函数执行以后的结果
-  * 什么也不返回
-    * forEach
+* 不修改原数组
+* 不返回任何值
+* 只循环，相当于for
+* 不能提前终止
 
+> 对数组的每一个方法执行一遍给定的方法，不返回值，也不改变原数组
 
+让每个元素做一些事情，具体做什么，随便
+
+``` javascript
+arrNum.forEach(function(ele){
+  pickupSoup(ele)
+})
+```
+
+> 注意：除了抛出异常以外，没有办法中止或跳出 forEach() 循环。如果你需要中止或跳出循环，forEach() 方法不是应当使用的工具。
 
 ## 易忘点
 
