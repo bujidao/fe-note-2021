@@ -40,6 +40,8 @@ console.log(res) // llo w
 
 ### slice
 
+!> **译：**分片
+
 * 不修改原字符串
 * 返回一个新的字符串
 * `slice[start, end)`
