@@ -1,4 +1,4 @@
-## Event-Loop
+## Event-Loop <!-- {docsify-ignore} -->
 
 > a programming construct that waits for and dispatches events or messages in a program.
 
