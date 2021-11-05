@@ -14,3 +14,10 @@ h2 span {
 h3 {
   border-bottom: 2px solid var(--theme-color, #42b983);
 }
+
+img{
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  border-radius: 4px;
+}

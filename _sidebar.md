@@ -6,3 +6,4 @@
     * [array](/pages/javascript/array)
     * [object](/pages/javascript/object)
     * [function](/pages/javascript/function)
+    * [百科](/pages/javascript/baike)
