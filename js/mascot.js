@@ -15,7 +15,7 @@ window.onload = function() {
     id: 'koharu',
     label: '女孩水手'
   },{
-    id: 'haru',
+    id: 'hibiki',
     label: '女仆'
   }]
   var date = new Date()
@@ -24,7 +24,7 @@ window.onload = function() {
   var jsonPath = 'https://unpkg.com/live2d-widget-model-'+mascot+'@1.0.5/assets/'+mascot+'.model.json'
   L2Dwidget.init({
     model: {
-      scale: 1,
+      scale: 0.9,
       jsonPath: jsonPath
     },
     display: {
