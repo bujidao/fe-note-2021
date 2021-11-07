@@ -10,15 +10,17 @@
 
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
   <link rel="stylesheet" href="./style/main.css">
-
 </head>
 
 <body>
   <div id="app">Loading</div>
   <script>
+    var config = {
+      repo: 'https://github.com/bujidao/fe-note-2021/'
+    }
     window.$docsify = {
       name: 'Bujidao的笔记',
-      repo: 'https://github.com/bujidao/fe-note-2021',
+      repo: config.repo,
       loadSidebar: true,
       subMaxLevel: 2,
       loadNavbar: false,
@@ -44,7 +46,27 @@
         right: 15,
         bottom: 15,
         offset: 500
-      }
+      },
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            var url = config.repo + 'tree/master/' + vm.route.file
+            var editHtml = '[:memo:   在 Github 编辑此页](' + url + ')\n';
+            return (
+              editHtml +
+              html
+              // '\n\n----\n\n' +
+              // '<a href="#" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">Powered by Bujidao</a>'
+            );
+          })
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->
@@ -58,6 +80,7 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
   <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/L2Dwidget/js/L2Dwidget.min.js"></script>
+
   <script src="./js/mascot.js"></script>
   <script src="./js/main.js"></script>
 </body>

@@ -1,6 +1,8 @@
-## Event-Loop <!-- {docsify-ignore} -->
+# Event-Loop <!-- {docsify-ignore} -->
 
 > a programming construct that waits for and dispatches events or messages in a program.
+
+## 原理
 
 !> 原理：CPU分时调度(主要站在计算机原理的角度进行分析)
 
@@ -31,7 +33,7 @@ JS是一种`单线程`语言，所有的任务都在一个`线程`上完成，�
 
 > 文章参考来源 [什么是 Event Loop？](http://www.ruanyifeng.com/blog/2013/10/event_loop.html)
 
-**扩展**
+## 扩展
 
 > 你也许会问，JavaScript为什么是单线程，难道不能实现为多线程吗？
 >

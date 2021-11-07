@@ -1,0 +1,88 @@
+<table>
+  <tr>
+    <th></th>
+    <th>cookie</th>
+    <th>session</th>
+  </tr>
+  <tr>
+    <td>存储大小</td>
+    <td>单个cookie数据不超过4k</td>
+    <td>没有限制</td>
+  </tr>
+  <tr>
+    <td>保存位置</td>
+    <td>
+      保存在本地
+      <br>
+      <ol>
+        <li>
+          已设置过期时间：本地硬盘
+        </li>
+        <li>
+          未设置过期时间：内存(会话结束销毁)
+        </li>
+      </ol>
+    </td>
+    <td>
+      数据：保存在服务器(缺：占用服务器资源)
+      <br>
+      session_id：保存在会话cookie
+    </td>
+  </tr>
+  <tr>
+    <td>默认保存时长</td>
+    <td>会话期间</td>
+    <td>
+      <ol>
+        <li>session_id: 保存在会话cookie中</li>
+        <li>session内容：默认30分钟</li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <td>安全性</td>
+    <td colspan="2">session 大于 cookie</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<ol>
+  <li></li>
+  <li></li>
+</ol>
+
+<style>
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    margin-bottom: 1rem;
+    overflow: auto;
+    width: 100%;
+    border-color: grey;
+  }
+  tr {
+    border-top: 1px solid #ccc;
+  }
+  th {
+    border: 1px solid #ddd;
+    font-weight: bold;
+    padding: 6px 13px;
+  }
+  td {
+    border: 1px solid #ddd;
+    padding: 6px 13px;
+  }
+  tr:nth-child(2n) {
+    background-color: #f8f8f8;
+  }
+</style>
