@@ -1,3 +1,6 @@
+# 数组
+
+介绍数组的相关方法的共性与特性
 
 ## 循环遍历
 
@@ -207,6 +210,27 @@ let arrCars = ['bmw', 'volvo', 'tesla', 'vw', 'benz']
 var res = arrCars.splice(2, 1)
 ```
 
+### sort
+
+* 直接修改原数组
+* 返回修改后的数组
+
+``` javascript
+var arr = [11, 3, 15, 12, 2]
+
+var res = arr.sort(function(a, b) {
+  return a - b
+})
+
+console.log(arr) // [2, 3, 11, 12, 15]
+console.log(res) // [2, 3, 11, 12, 15]
+```
+
+a-b值情况：
+1. 结果大于0：a排b后
+1. 结果小于0：a排b前
+1. 结果等于0：位置不变
+
 ## 与其他数据类型的转换
 
 ### toString
@@ -255,3 +279,5 @@ function combine() {
 var res2 = combine(arr1, arr2, arr3)
 // res2: [1, 2, 3, 4, 5, 6, 7]
 ```
+
+

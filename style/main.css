@@ -46,3 +46,8 @@ article img{
   box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);
   border-radius: 4px;
 }
+
+blockquote {
+  background: #f8f8f8;
+  overflow: hidden;
+}

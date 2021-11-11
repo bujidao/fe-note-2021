@@ -9,3 +9,5 @@
     * [**百科**](/pages/javascript/baike)
       * [Event-Loop](/pages/javascript/baike/event-loop)
       * [cookie、session](/pages/javascript/baike/difference-of-cookie-session-and-so-on)
+      * [Closures](/pages/javascript/baike/closures)
+      
