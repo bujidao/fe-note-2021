@@ -40,10 +40,11 @@ article h4:before {
 }
 
 article img{
-  -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.75);
-  box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow:    0px 10px 20px 0px rgba(50, 50, 50, 0.5);
+  box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.5);
   border-radius: 4px;
+  position: relative;
 }
 
 article blockquote {

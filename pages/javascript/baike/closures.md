@@ -46,11 +46,11 @@ ECMAScript中，闭包指的是：
 ``` javascript
 var scope = "global scope";
 function checkscope(){
-    var scope = "local scope";
-    function f(){
-        return scope;
-    }
-    return f;
+  var scope = "local scope";
+  function f(){
+    return scope;
+  }
+  return f;
 }
 
 var foo = checkscope();
@@ -63,14 +63,16 @@ foo();
 
 这里直接给出简要的执行过程：
 
-1. 进入全局代码，创建全局执行上下文EC(G)，全局执行上下文压入执行上下文栈
+1. 进入全局代码，创建`全局执行上下文EC(G)`，全局执行上下文压入`执行上下文栈ECStack`
+1. 创建全局变量对象VO(G)
 1. 全局执行上下文初始化
 1. 执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 执行上下文被压入执行上下文栈
-checkscope 执行上下文初始化，创建变量对象、作用域链、this等
-checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出
-执行 f 函数，创建 f 函数执行上下文，f 执行上下文被压入执行上下文栈
-f 执行上下文初始化，创建变量对象、作用域链、this等
-f 函数执行完毕，f 函数上下文从执行上下文栈中弹出
+1. checkscope 执行上下文初始化，创建变量对象、作用域链、this等
+1. checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出
+1. 执行 f 函数，创建 f 函数执行上下文，f 执行上下文被压入执行上下文栈
+1. f 执行上下文初始化，创建变量对象、作用域链、this等
+1. f 函数执行完毕，f 函数上下文从执行上下文栈中弹出
+
 了解到这个过程，我们应该思考一个问题，那就是：
 
 当 f 函数执行的时候，checkscope 函数上下文已经被销毁了啊(即从执行上下文栈中被弹出)，怎么还会读取到 checkscope 作用域下的 scope 值呢？
@@ -81,21 +83,128 @@ f 函数执行完毕，f 函数上下文从执行上下文栈中弹出
 
 当我们了解了具体的执行过程后，我们知道 f 执行上下文维护了一个作用域链：
 
+```
 fContext = {
   Scope: [AO, checkscopeContext.AO, globalContext.VO],
 }
+```
+
 对的，就是因为这个作用域链，f 函数依然可以读取到 checkscopeContext.AO 的值，说明当 f 函数引用了 checkscopeContext.AO 中的值的时候，即使 checkscopeContext 被销毁了，但是 JavaScript 依然会让 checkscopeContext.AO 活在内存中，f 函数依然可以通过 f 函数的作用域链找到它，正是因为 JavaScript 做到了这一点，从而实现了闭包这个概念。
 
 所以，让我们再看一遍实践角度上闭包的定义：
 
-即使创建它的上下文已经销毁，它仍然存在（比如，内部函数从父函数中返回）
-在代码中引用了自由变量
+1. 即使创建它的上下文已经销毁，它仍然存在（比如，内部函数从父函数中返回）
+1. 在代码中引用了自由变量
+
 在这里再补充一个《JavaScript权威指南》英文原版对闭包的定义:
 
-This combination of a function object and a scope (a set of variable bindings) in which the function’s variables are resolved is called a closure in the computer science literature.
+>This combination of a function object and a scope (a set of variable bindings) in which the function’s variables are resolved is called a closure in the computer science literature.
 
 闭包在计算机科学中也只是一个普通的概念，大家不要去想得太复杂。
 
-## 视频
+## 题型
+
+接下来，看这道刷题必刷，面试必考的闭包题：
+
+``` javascript
+var data = [];
+
+for (var i = 0; i < 3; i++) {
+  data[i] = function () {
+    console.log(i);
+  };
+}
+
+data[0]();
+data[1]();
+data[2]();
+```
+
+答案是都是 3，让我们分析一下原因：
+
+当执行到 data[0] 函数之前，此时全局上下文的 VO 为：
+
+```
+globalContext = {
+  VO: {
+    data: [...],
+    i: 3
+  }
+}
+```
+
+data[0]Context 的 AO 并没有 i 值，所以会从 globalContext.VO 中查找，i 为 3，所以打印的结果就是 3。
+
+data[1] 和 data[2] 是一样的道理。
+
+所以让我们改成闭包看看：
+
+``` javascript
+var data = [];
+
+for (var i = 0; i < 3; i++) {
+  data[i] = (function (i) {
+    return function(){
+      console.log(i);
+    }
+  })(i);
+}
+
+data[0]();
+data[1]();
+data[2]();
+```
+
+当执行到 data[0] 函数之前，此时全局上下文的 VO 为：
+
+```
+globalContext = {
+  VO: {
+    data: [...],
+    i: 3
+  }
+}
+```
+
+跟没改之前一模一样。
+
+当执行 data[0] 函数的时候，data[0] 函数的作用域链发生了改变：
+```
+data[0]Context = {
+    Scope: [AO, 匿名函数Context.AO globalContext.VO]
+}
+```
+匿名函数执行上下文的 AO 为：
+
+```
+匿名函数Context = {
+  AO: {
+    arguments: {
+      0: 0,
+      length: 1
+    },
+    i: 0
+  }
+}
+```
+
+data[0]Context 的 AO 并没有 i 值，所以会沿着作用域链从匿名函数 Context.AO 中查找，这时候就会找 i 为 0，找到了就不会往 globalContext.VO 中查找了，即使 globalContext.VO 也有 i 的值(值为3)，所以打印的结果就是 0。
+
+data[1] 和 data[2] 是一样的道理。
+
+## 辅助图片
+
+![](/media/Snipaste_2021-11-12_14-43-29.png)
+
+## 辅助视频
 
 <iframe height="600" src="//player.bilibili.com/player.html?aid=286340004&bvid=BV1xf4y1R7AH&cid=209899654&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+## 笔记
+
+闭包：当前函数，形成一个私有的上下文，函数执行完，如果函数里面的某个东西，被当前上下文以外的内容占用了，则当前函数文不能被释放，则形成了闭包。（当前私有变量，也不会被销毁）
+
+作用：
+1. 保护变量不受外界的干扰
+1. 保存私有变量
+
