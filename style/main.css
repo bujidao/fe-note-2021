@@ -1,0 +1,52 @@
+h1 a:hover, h2 a:hover, h3:hover a {
+  text-decoration: none !important;
+}
+article h1 {
+  border-bottom: 4px solid var(--theme-color, #42b983);
+}
+article h2 {
+  border-bottom: 3px solid var(--theme-color, #42b983);
+}
+article h3 {
+  border-bottom: 2px solid var(--theme-color, #42b983);
+}
+article h4 {
+  border-bottom: 1px solid var(--theme-color, #42b983);
+}
+
+/* 配合counter-increment和counter-reset属性 */
+body{
+  counter-reset: section;/* 设置选择器出现的次数根据内容 */
+}
+article h1::before{
+  content: "# ";
+  color: var(--theme-color, #42b983);
+}
+article h2{
+  counter-reset: subsection;
+  content:counter(section) "#";
+}
+article h2:before{
+  counter-increment:section;/*属性递增一个或者多个计数器的值*/
+  content:counter(section) "、";
+}
+article h3:before {
+  counter-increment: subsection;
+  content: counter(section) "." counter(subsection) "、"
+}
+article h4:before {
+  counter-increment: subsection;
+  content: "."
+}
+
+article img{
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+  border-radius: 4px;
+}
+
+article blockquote {
+  background: #f8f8f8;
+  overflow: hidden;
+}
