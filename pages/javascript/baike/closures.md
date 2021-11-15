@@ -1,5 +1,7 @@
 # 闭包
 
+> 个人理解: 若子函数被占用,则父函数执行完成以后,不会释放内存,父函数的作用域链[[scope]]也不会释放
+
 ## 定义
 
 MDN 对闭包的定义为：
@@ -19,7 +21,7 @@ Eg:
 var a = 1;
 
 function foo() {
-    console.log(a);
+  console.log(a);
 }
 
 foo();
@@ -192,19 +194,102 @@ data[0]Context 的 AO 并没有 i 值，所以会沿着作用域链从匿名函�
 
 data[1] 和 data[2] 是一样的道理。
 
-## 辅助图片
-
-![](/media/Snipaste_2021-11-12_14-43-29.png)
-
-## 辅助视频
+## 视频讲解
 
 <iframe height="600" src="//player.bilibili.com/player.html?aid=286340004&bvid=BV1xf4y1R7AH&cid=209899654&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+* 搭配图片
+
+![搭配图片](/media/Snipaste_2021-11-12_14-43-29.png)
 
 ## 笔记
 
 闭包：当前函数，形成一个私有的上下文，函数执行完，如果函数里面的某个东西，被当前上下文以外的内容占用了，则当前函数文不能被释放，则形成了闭包。（当前私有变量，也不会被销毁）
 
+考虑维护全局纯净，可以借助闭包来实现
+
 作用：
 1. 保护变量不受外界的干扰
 1. 保存私有变量
+
+## 实际应用
+
+闭包在实际开发中的应用
+
+### 防抖函数
+
+``` javascript
+/**
+ * 防抖函数
+ * @param {*} func 
+ * @param {*} wait 
+ * @returns 
+ */
+function debounce(func, wait) {
+  var timeout
+  return function() {
+    if (timeout) clearTimeout(timeout)
+    var canExe = !timeout 
+    timeout = setTimeout(function() {
+      timeout = null
+    }, wait)
+    if (canExe) func.apply(this, arguments)
+  }
+}
+
+```
+
+### 节流函数
+
+``` javascript
+/**
+ * 节流函数
+ * @param {*} func 
+ * @param {*} wait 
+ * @returns 
+ */
+function throttle(func, wait) {
+  var oldTs = 0;
+  return function() {
+    var newTs = Date.now()
+    if (newTs - oldTs >= wait) {
+      func.apply(this, arguments)
+      oldTs = newTs
+    }
+  }
+}
+
+```
+
+### getter和setter
+
+``` javascript
+function fn(){
+    var name='hello'
+    setName=function(n){
+        name = n;
+    }
+    getName=function(){
+        return name;
+    }
+
+    //将setName，getName作为对象的属性返回
+    return {
+        setName:setName,
+        getName:getName
+    }
+}
+var fn1 = fn();//返回对象，属性setName和getName是两个函数
+console.log(fn1.getName());//getter
+fn1.setName('world');//setter修改闭包里面的name
+console.log(fn1.getName());//getter
+```
+
+### 沙箱
+
+[沙箱 - 站内链接](/sandbox)
+
+### 其他使用场景
+
+[JS 闭包的 9 大经典使用场景](https://www.jianshu.com/p/9eb30b6af3a1)
 
