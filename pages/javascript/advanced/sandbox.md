@@ -13,13 +13,46 @@
 
 ## 实现一个沙箱
 
-沙箱的目的是，只让沙箱里面的代码访问系统指定的变量，或者不让沙箱里面的代码访问外部便变量；
+沙箱的目的是，阻断沙箱里面的代码访问指定以外的变量；
 
 基于此，实现沙箱的思路是：手动生成一个执行环境，并把这个执行环境直接提供沙箱使用；
 
 但是，如果沙箱里面的变量是复杂不确定的，由于沙箱寻找变量的时候，会根据作用链域一层一层往上找，也就无法实现沙箱对外部访问的控制；为了阻止这种情况，用到一个`Proxy`代理；
 
 * demo
-``` javascript
 
+``` javascript
+var obj = {
+  name: 'hebo',
+  age: '23',
+  fun: function(str) {
+    console.log(str)
+  }
+}
+var white_list = ['console', 'Math']
+var strr = 'world'
+var codeStr = 'console.log(name);console.log(strr);console.log(fun(age));'
+
+function mySandbox(code) {
+  // 创建一个代理，拦截所有请求
+  var proxyObj = new Proxy(obj, {
+    has: function(target, key) {
+      if (white_list.includes(key)) {
+        return target.hasOwnProperty(key)
+      }
+
+      if (!target.hasOwnProperty(key)) {
+        return undefined
+      }
+
+      return true
+    },
+  })
+  var fun = new Function('proxyObj', 'with(proxyObj){'+code+'}')
+  fun.call(proxyObj, proxyObj)
+}
+
+mySandbox(codeStr)
 ```
+
+> [参考](https://zhuanlan.zhihu.com/p/428039764)

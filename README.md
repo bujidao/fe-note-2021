@@ -14,6 +14,7 @@
 - [ ] 写plugin
 - [ ] 防抖 节流
 - [ ] src与href的区别
+- [ ] 虚拟dom
 
 参考文档
 > [MDN: https://developer.mozilla.org/](https://developer.mozilla.org/)
