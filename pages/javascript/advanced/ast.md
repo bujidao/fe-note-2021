@@ -43,6 +43,7 @@ AST的作用不仅仅是用来在JavaScript引擎的编译上，我们在实际�
 ```
 1. *语法分析*：它会将词法分析出来的数组转化成树形的表达形式。同时，验证语法，语法如果有错的话，抛出语法错误。当生成树的时候，解析器会删除一些没必要的标识tokens（比如不完整的括号），因此AST不是100%与源码匹配的，但是已经能让我们知道如何处理了。说个题外话，解析器100%覆盖所有代码结构生成树叫做CST（具体语法树）；示例：
 ``` javascript
+<<<<<<< HEAD
 // {
 //   type: 'Program',
 //   body: [{
@@ -402,3 +403,6 @@ function compiler(input) {
 > [博客代码出处](https://hub.fastgit.org/bujidao/the-super-tiny-compiler/blob/master/the-super-tiny-compiler.js)
 
 > [文章](https://juejin.cn/post/6844903725228621832)
+=======
+```
+>>>>>>> dev
