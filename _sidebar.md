@@ -15,6 +15,7 @@
       * [乱序](/pages/javascript/algorithm/sort)
     * **进阶**
       * [Sandbox](/pages/javascript/advanced/sandbox)
+      * [AST](/pages/javascript/advanced/ast)
 
   * CSS
     * **百科**
