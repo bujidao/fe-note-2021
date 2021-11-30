@@ -62,5 +62,5 @@ ES7 ES8
   1. `exclude`: 
 
 `plugins`: 插件，数组
-
+z
 ``
