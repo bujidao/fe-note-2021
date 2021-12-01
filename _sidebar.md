@@ -11,6 +11,7 @@
       * [cookie、session](/pages/javascript/baike/difference-of-cookie-session-and-so-on)
       * [Hoisting](/pages/javascript/baike/hoisting)
       * [Closures](/pages/javascript/baike/closures)
+      * [prototype](/pages/javascript/baike/prototype)
     * **算法**
       * [乱序](/pages/javascript/algorithm/sort)
     * **进阶**
