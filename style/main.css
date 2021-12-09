@@ -39,13 +39,13 @@ article h4:before {
   content: "."
 }
 
-article img{
+/* article img{
   -webkit-box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.5);
   -moz-box-shadow:    0px 10px 20px 0px rgba(50, 50, 50, 0.5);
   box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.5);
   border-radius: 4px;
   position: relative;
-}
+} */
 
 article blockquote {
   background: #f8f8f8;
